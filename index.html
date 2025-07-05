@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -39,7 +40,7 @@
             font-size: 2.5rem;
             color: white;
             margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
 
         .header p {
@@ -129,7 +130,8 @@
             margin-bottom: 20px;
         }
 
-        .date-input, .task-input {
+        .date-input,
+        .task-input {
             padding: 12px;
             border: 2px solid #e2e8f0;
             border-radius: 12px;
@@ -137,7 +139,8 @@
             transition: border-color 0.3s ease;
         }
 
-        .date-input:focus, .task-input:focus {
+        .date-input:focus,
+        .task-input:focus {
             outline: none;
             border-color: #667eea;
             box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
@@ -248,7 +251,7 @@
             transform: translate(-50%, -50%);
             font-weight: bold;
             color: white;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
         }
 
         .notification {
@@ -317,6 +320,7 @@
                 opacity: 0;
                 transform: translateX(-20px);
             }
+
             to {
                 opacity: 1;
                 transform: translateX(0);
@@ -328,6 +332,7 @@
                 opacity: 0;
                 transform: translateX(100px);
             }
+
             to {
                 opacity: 1;
                 transform: translateX(0);
@@ -335,28 +340,36 @@
         }
 
         @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(180deg); }
+
+            0%,
+            100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-20px) rotate(180deg);
+            }
         }
 
         @media (max-width: 768px) {
             .main-content {
                 grid-template-columns: 1fr;
             }
-            
+
             .planner-section {
                 grid-template-columns: 1fr;
             }
-            
+
             .header h1 {
                 font-size: 2rem;
             }
         }
     </style>
 </head>
+
 <body>
     <div class="floating-hearts" id="floatingHearts"></div>
-    
+
     <div class="container">
         <div class="header">
             <h1>✨ SSC CGL 2025 Dream Planner ✨</h1>
@@ -397,7 +410,7 @@
                     <input type="text" class="task-input" id="taskInput" placeholder="Enter your study task..." />
                 </div>
                 <button class="btn" onclick="addTask()">Add Task</button>
-                
+
                 <div class="tasks-list" id="tasksList">
                     <!-- Tasks will be added here -->
                 </div>
@@ -426,16 +439,26 @@
         let notificationTimeout;
 
         const motivationalQuotes = [
-            "Success is not final, failure is not fatal: it is the courage to continue that counts!",
-            "The future belongs to those who believe in the beauty of their dreams.",
-            "Don't watch the clock; do what it does. Keep going.",
-            "The only impossible journey is the one you never begin.",
-            "Your only limit is your mind. Push beyond it!",
-            "Great things never come from comfort zones.",
-            "Success is the sum of small efforts repeated day in and day out.",
-            "The expert in anything was once a beginner.",
-            "You are capable of amazing things!",
-            "Every accomplishment starts with the decision to try."
+            // "Success is not final, failure is not fatal: it is the courage to continue that counts!",
+            // "The future belongs to those who believe in the beauty of their dreams.",
+            // "Don't watch the clock; do what it does. Keep going.",
+            // "The only impossible journey is the one you never begin.",
+            // "Your only limit is your mind. Push beyond it!",
+            // "Great things never come from comfort zones.",
+            // "Success is the sum of small efforts repeated day in and day out.",
+            // "The expert in anything was once a beginner.",
+            // "You are capable of amazing things!",
+            "Neetu, you are not just strong, you are unstoppable and I believe in you more than anything.",
+            "Every time you doubt yourself, Neetu, remember there's someone who sees endless power and brilliance in you and that’s me.",
+            "Neetu, the way you handle your struggles with grace makes me admire you more every single day.",
+            "Even on your lowest days, Neetu, your heart shines brighter than the stars never forget your light.",
+            "You inspire me, Neetu, not just to love, but to grow, dream, and become better every day.",
+            "Your mind is powerful, your heart is gold, and your soul is rare, Neetu the world is lucky to have you.",
+            "Challenges may knock, Neetu, but you're built to rise and I’ll be here, always cheering the loudest for you.",
+            "Neetu, you don't need to be perfect you're already extraordinary just by being you.",
+            "The fire inside you, Neetu, is made of resilience, dreams, and love and I see it blazing every time you smile.",
+            "Never underestimate how much strength you carry, Neetu. You're doing better than you think and I’m so proud of you."
+
         ];
 
         function showNotification(message, type = 'success') {
@@ -443,7 +466,7 @@
             notification.className = `notification ${type}`;
             notification.textContent = message;
             document.body.appendChild(notification);
-            
+
             setTimeout(() => {
                 notification.remove();
             }, 3000);
@@ -452,12 +475,12 @@
         function addTask() {
             const taskInput = document.getElementById('taskInput');
             const taskDate = document.getElementById('taskDate');
-            
+
             if (!taskInput.value.trim()) {
                 showNotification('Please enter a task!', 'error');
                 return;
             }
-            
+
             if (!taskDate.value) {
                 showNotification('Please select a date!', 'error');
                 return;
@@ -474,7 +497,7 @@
             tasks.push(task);
             taskInput.value = '';
             taskDate.value = '';
-            
+
             renderTasks();
             updateProgress();
             showNotification('Task added successfully! 🎉');
@@ -490,7 +513,7 @@
             tasks.forEach(task => {
                 const taskItem = document.createElement('div');
                 taskItem.className = `task-item ${task.completed ? 'completed' : ''}`;
-                
+
                 taskItem.innerHTML = `
                     <div class="task-content">
                         <div class="task-text">${task.text}</div>
@@ -503,7 +526,7 @@
                         <button class="btn btn-small btn-danger" onclick="deleteTask(${task.id})">🗑️</button>
                     </div>
                 `;
-                
+
                 tasksList.appendChild(taskItem);
             });
         }
@@ -514,7 +537,7 @@
                 task.completed = !task.completed;
                 renderTasks();
                 updateProgress();
-                
+
                 if (task.completed) {
                     showNotification('Great job! Task completed! 🌟');
                     createFloatingHeart();
@@ -535,7 +558,7 @@
             const completedTasks = tasks.filter(t => t.completed).length;
             const totalTasks = tasks.length;
             const percentage = totalTasks > 0 ? Math.round((completedTasks / totalTasks) * 100) : 0;
-            
+
             document.getElementById('progressFill').style.width = percentage + '%';
             document.getElementById('progressText').textContent = percentage + '% Complete';
             document.getElementById('completedCount').textContent = completedTasks;
@@ -558,9 +581,9 @@
             heart.style.top = Math.random() * 100 + '%';
             heart.style.pointerEvents = 'none';
             heart.style.zIndex = '1000';
-            
+
             document.getElementById('floatingHearts').appendChild(heart);
-            
+
             setTimeout(() => {
                 heart.remove();
             }, 3000);
@@ -570,7 +593,7 @@
             const examDate = new Date('2025-8-13'); // Estimated SSC CGL 2025 exam date
             const now = new Date();
             const difference = examDate - now;
-            
+
             if (difference > 0) {
                 const days = Math.floor(difference / (1000 * 60 * 60 * 24));
                 document.getElementById('countdownTimer').textContent = days;
@@ -593,7 +616,7 @@
                     content: 'Free mock tests available on official website to practice for the exam.'
                 }
             ];
-            
+
             sampleUpdates.forEach(update => {
                 const updateItem = document.createElement('div');
                 updateItem.className = 'update-item';
@@ -607,20 +630,20 @@
         }
 
         // Initialize the app
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             updateCountdown();
             setInterval(updateCountdown, 86400000); // Update daily
-            
+
             // Set today's date as default
             document.getElementById('taskDate').value = new Date().toISOString().split('T')[0];
-            
+
             // Add some sample tasks
             const sampleTasks = [
-                { text: 'Complete General Knowledge revision', date: new Date().toISOString().split('T')[0] },
-                { text: 'Practice Quantitative Aptitude - 50 questions', date: new Date(Date.now() + 86400000).toISOString().split('T')[0] },
-                { text: 'English Comprehension mock test', date: new Date(Date.now() + 172800000).toISOString().split('T')[0] }
+                {text: 'Complete General Knowledge revision', date: new Date().toISOString().split('T')[0]},
+                {text: 'Practice Quantitative Aptitude - 50 questions', date: new Date(Date.now() + 86400000).toISOString().split('T')[0]},
+                {text: 'English Comprehension mock test', date: new Date(Date.now() + 172800000).toISOString().split('T')[0]}
             ];
-            
+
             sampleTasks.forEach(task => {
                 tasks.push({
                     id: Date.now() + Math.random(),
@@ -630,10 +653,10 @@
                     createdAt: new Date().toISOString()
                 });
             });
-            
+
             renderTasks();
             updateProgress();
-            
+
             // Welcome message
             setTimeout(() => {
                 showNotification('Welcome to your SSC CGL 2025 Dream Planner! 🎯');
@@ -641,11 +664,12 @@
         });
 
         // Keyboard shortcuts
-        document.addEventListener('keydown', function(e) {
+        document.addEventListener('keydown', function (e) {
             if (e.key === 'Enter' && e.ctrlKey) {
                 addTask();
             }
         });
     </script>
 </body>
+
 </html>
